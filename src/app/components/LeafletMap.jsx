@@ -63,20 +63,39 @@ const LeafletMap = ({ onLocationSelected, markers }) => {
 
       {/* User marker */}
       {userMarker && (
-        <Marker position={userMarker} icon={customIcon}>
+        <Marker position={userMarker} icon={customIcon}
+        eventHandlers={{
+            mouseover: (e) => {
+              e.target.openPopup(); // Open popup on hover
+            },
+            mouseout: (e) => {
+              e.target.closePopup(); // Close popup when hover ends
+            },
+          }}
+        >
+
           <Popup>Your selected location</Popup>
         </Marker>
       )}
 
       {/* Displaying any other markers passed from props */}
       {markers.map((marker, index) => (
-        <Marker key={index} position={[marker.latitude, marker.longitude]} icon={customIcon}>
+        <Marker key={index} position={[marker.latitude, marker.longitude]} icon={customIcon}
+        eventHandlers={{
+            mouseover: (e) => {
+              e.target.openPopup(); // Open popup on hover
+            },
+            mouseout: (e) => {
+              e.target.closePopup(); // Close popup when hover ends
+            },
+          }}
+        >
           <Popup>hiii</Popup>
-          {/* <Image src={marker} alt="marker png" /> */}
+         
         </Marker>
       ))}
     </MapContainer>
-    {/* <Image src={markerIcon} alt='hii' /> */}
+    
     </>
   );
 };
